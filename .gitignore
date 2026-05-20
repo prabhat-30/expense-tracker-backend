@@ -1,0 +1,68 @@
+# ==========================================
+# BUILD & COMPILED FILES
+# ==========================================
+HELP.md
+target/
+build/
+.gradle/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# ==========================================
+# SECRETS & LOCAL ENVIRONMENTS
+# ==========================================
+.env
+*.env
+application-local.properties
+application-local.yml
+
+# ==========================================
+# LOGS & CRASH REPORTS
+# ==========================================
+*.log
+logs/
+hs_err_pid*
+
+# ==========================================
+# OS GENERATED FILES
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# IDEs & EDITORS
+# ==========================================
+# VS Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.metadata/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
