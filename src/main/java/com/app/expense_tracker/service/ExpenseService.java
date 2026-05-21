@@ -2,7 +2,6 @@ package com.app.expense_tracker.service;
 
 import com.app.expense_tracker.dto.analytics.CategoryTotalDTO;
 import com.app.expense_tracker.dto.analytics.DashboardSummaryDTO;
-import com.app.expense_tracker.dto.analytics.MonthlyExpenseDTO;
 import com.app.expense_tracker.dto.ExpenseDTO;
 import com.app.expense_tracker.dto.analytics.YearlyExpenseDTO;
 import com.app.expense_tracker.entity.Budget;
