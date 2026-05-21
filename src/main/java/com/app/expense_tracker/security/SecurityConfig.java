@@ -67,7 +67,7 @@ public class SecurityConfig {
                 // ROUTE AUTHORIZATION
                 .authorizeHttpRequests(auth -> auth
                         // PUBLIC ENDPOINTS (Includes standard endpoints and OAuth redirection parameters)
-                        .requestMatchers("/auth/**", "/oauth2/**", "/login/oauth2/**").permitAll()
+                        .requestMatchers("/auth/**", "/oauth2/**", "/login/oauth2/**", "/api/system/**").permitAll()
 
                         // ADMIN ONLY
                         .requestMatchers("/admin/**").hasRole("ADMIN")
