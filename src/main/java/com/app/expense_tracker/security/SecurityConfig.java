@@ -100,7 +100,7 @@ public class SecurityConfig {
                             String token = jwtService.generateToken(email, "USER");
 
                             // Construct query redirect path to pass parameters cleanly down to React
-                            String targetUrl = "http://localhost:5173/login?token=" + token + "&role=USER";
+                            String targetUrl = "https://expense-tracker-frontend-0502-pvdowzfay-prabhat-30s-projects.vercel.app/login?token=" + token + "&role=USER";
 
                             response.sendRedirect(targetUrl);
                         })
@@ -166,7 +166,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("https://expense-tracker-frontend-0502-pvdowzfay-prabhat-30s-projects.vercel.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
