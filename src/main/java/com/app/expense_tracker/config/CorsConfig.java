@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsConfig {
 
     // 🌟 ENTERPRISE PRACTICE: Externalize production domains to application.properties
-    @Value("${app.security.cors.allowed-origins:http://localhost:5173}")
+    @Value("${app.security.cors.allowed-origins}")
     private String allowedOrigins;
 
     @Bean
