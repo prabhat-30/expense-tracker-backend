@@ -38,7 +38,7 @@ public class AdminInitializer implements CommandLineRunner {
             );
 
             admin.setRole(Role.ADMIN);
-            admin.setEmail("admin@gmail.com")
+            admin.setEmail("admin@gmail.com");
 
             admin.setActive(true);
 
