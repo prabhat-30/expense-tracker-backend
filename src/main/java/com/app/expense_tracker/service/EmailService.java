@@ -1,27 +1,40 @@
 package com.app.expense_tracker.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import com.resend.Resend;
+import com.resend.core.exception.ResendException;
+import com.resend.services.emails.model.CreateEmailOptions;
+import com.resend.services.emails.model.CreateEmailResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
 
-    @Autowired(required = false)
-    private JavaMailSender emailSender;
+    private final Resend resend;
+
+    // Injects your API key from application.properties
+    public EmailService(@Value("${app.email.resend.api-key}") String apiKey) {
+        this.resend = new Resend(apiKey);
+    }
 
     public void sendSimpleMessage(String to, String subject, String text) {
-        if (emailSender == null) {
-            System.out.println("📬 SIMULATED EMAIL DISPATCH (Configure application.properties for live SMTP routing):");
-            System.out.println("To: " + to + " | Subject: " + subject + "\nText: " + text);
-            return;
+
+        // Convert plain text newlines (\n) to HTML breaks (<br>) so it formats correctly
+        String htmlFormattedText = "<p>" + text.replace("\n", "<br>") + "</p>";
+
+        CreateEmailOptions params = CreateEmailOptions.builder()
+                // MUST use onboarding@resend.dev until you verify a custom domain on their dashboard
+                .from("Expense Tracker <onboarding@resend.dev>")
+                .to(to)
+                .subject(subject)
+                .html(htmlFormattedText)
+                .build();
+
+        try {
+            CreateEmailResponse data = resend.emails().send(params);
+            System.out.println("✅ HTTP Email sent successfully! ID: " + data.getId());
+        } catch (ResendException e) {
+            System.err.println("❌ Failed to send HTTP email via Resend: " + e.getMessage());
         }
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("your-app-email@gmail.com");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        emailSender.send(message);
     }
 }
