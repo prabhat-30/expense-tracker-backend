@@ -4,6 +4,7 @@ import com.app.expense_tracker.dto.*;
 import com.app.expense_tracker.entity.*;
 import com.app.expense_tracker.repository.*;
 import com.app.expense_tracker.security.JwtService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,9 @@ import java.util.UUID;
 
 @Service
 public class AuthService {
-
+    @Value("${app.frontend.url:http://localhost:5173}")
+    private String frontendUrl;
+    
     private final UserRepository userRepository;
     private final PasswordResetTokenRepository tokenRepository;
     private final VerificationTokenRepository verificationTokenRepository;
@@ -76,7 +79,7 @@ public class AuthService {
         verificationToken.setExpiryDate(LocalDateTime.now().plusHours(24));
         verificationTokenRepository.save(verificationToken);
 
-        String activationLink = "http://localhost:5173/verify-email?token=" + token;
+        String activationLink = frontendUrl +"/verify-email?token=" + token;
         emailService.sendSimpleMessage(user.getEmail(), "Activate Your Ledger Account",
                 "Welcome to ExpenseTracker! Please click the following activation link to verify your account: " + activationLink);
 
