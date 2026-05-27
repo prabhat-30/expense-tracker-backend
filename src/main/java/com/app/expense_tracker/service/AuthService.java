@@ -233,7 +233,7 @@ public class AuthService {
         resetToken.setExpiryDate(LocalDateTime.now().plusMinutes(15)); // Strict 15-minute expiration rule
         tokenRepository.save(resetToken);
 
-        String resetLink = "http://localhost:5173/reset-password?token=" + token;
+        String resetLink = frontendUrl +"/reset-password?token=" + token;
         emailService.sendSimpleMessage(user.getEmail(), "Secure Password Reset Link Request",
                 "We received a request to reset your credentials. Click the link below to configure your new password:\n" + resetLink + "\n\nThis link will automatically expire in 15 minutes.");
 
