@@ -49,7 +49,6 @@ public class User implements UserDetails {
     private String otp;
     private LocalDateTime otpExpiry;
 
-    @Lob
     @Column(name = "avatar_image", columnDefinition = "TEXT")
     private String avatarImage;
 
