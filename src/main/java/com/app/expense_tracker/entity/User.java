@@ -50,7 +50,7 @@ public class User implements UserDetails {
     private LocalDateTime otpExpiry;
 
     @Lob
-    @Column(name = "avatar_image")
+    @Column(name = "avatar_image", columnDefinition = "TEXT")
     private String avatarImage;
 
     @Override
